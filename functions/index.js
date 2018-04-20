@@ -1,0 +1,212 @@
+const functions = require('firebase-functions');
+//const admin = require('firebase-admin');
+
+//admin.initializeApp(functions.config().firebase);
+
+//var firestore = admin.firestore();
+var fx = require('money');
+
+exports.webhoook = functions.https.onRequest((request, response) => {
+
+  "use strict";
+
+  /* configure conversion */
+    var fxSetup = {
+      "base": "USD",
+      "rates": {
+        "AED": 3.673014,
+        "AFN": 69.55,
+        "ALL": 105.4,
+        "AMD": 479.87899,
+        "ANG": 1.784605,
+        "AOA": 214.3575,
+        "ARS": 20.1495,
+        "AUD": 1.3019,
+        "AWG": 1.784998,
+        "AZN": 1.7025,
+        "BAM": 1.5934,
+        "BBD": 2,
+        "BDT": 82.96,
+        "BGN": 1.59263,
+        "BHD": 0.377025,
+        "BIF": 1781,
+        "BMD": 1,
+        "BND": 1.317363,
+        "BOB": 6.910011,
+        "BRL": 3.368012,
+        "BSD": 1,
+        "BTC": 0.000145525755,
+        "BTN": 65.156563,
+        "BWP": 9.611152,
+        "BYN": 1.962861,
+        "BZD": 2.00983,
+        "CAD": 1.2791,
+        "CDF": 1615,
+        "CHF": 0.959255,
+        "CLF": 0.02218,
+        "CLP": 604.8,
+        "CNH": 6.311338,
+        "CNY": 6.3017,
+        "COP": 2817.460317,
+        "CRC": 567.097559,
+        "CUC": 1,
+        "CUP": 25.5,
+        "CVE": 90.45,
+        "CZK": 20.654991,
+        "DJF": 177,
+        "DKK": 6.063665,
+        "DOP": 49.527617,
+        "DZD": 114.36,
+        "EGP": 17.6585,
+        "ERN": 15.09,
+        "ETB": 27.417298,
+        "EUR": 0.81382,
+        "FJD": 2.043351,
+        "FKP": 0.70987,
+        "GBP": 0.70987,
+        "GEL": 2.425502,
+        "GGP": 0.70987,
+        "GHS": 4.437767,
+        "GIP": 0.70987,
+        "GMD": 47.32,
+        "GNF": 9026.25,
+        "GTQ": 7.415922,
+        "GYD": 206.749115,
+        "HKD": 7.84895,
+        "HNL": 23.681908,
+        "HRK": 6.045872,
+        "HTG": 64.707141,
+        "HUF": 254.415,
+        "IDR": 13776.647095,
+        "ILS": 3.53138,
+        "IMP": 0.70987,
+        "INR": 64.9145,
+        "IQD": 1189,
+        "IRR": 37636.02369,
+        "ISK": 98.768306,
+        "JEP": 0.70987,
+        "JMD": 124.766797,
+        "JOD": 0.709503,
+        "JPY": 106.93,
+        "KES": 101,
+        "KGS": 68.300749,
+        "KHR": 4008,
+        "KMF": 402.498446,
+        "KPW": 900,
+        "KRW": 1070.44,
+        "KWD": 0.300118,
+        "KYD": 0.833149,
+        "KZT": 319.890241,
+        "LAK": 8315,
+        "LBP": 1513,
+        "LKR": 155.45,
+        "LRD": 131.751267,
+        "LSL": 11.936136,
+        "LYD": 1.332,
+        "MAD": 9.215767,
+        "MDL": 16.433954,
+        "MGA": 3230.2,
+        "MKD": 50.1385,
+        "MMK": 1332.860206,
+        "MNT": 2388.332694,
+        "MOP": 8.087069,
+        "MRO": 355.5,
+        "MRU": 35.4,
+        "MUR": 33.5735,
+        "MVR": 15.404937,
+        "MWK": 726.3,
+        "MXN": 18.2883,
+        "MYR": 3.870046,
+        "MZN": 61.17,
+        "NAD": 12.05125,
+        "NGN": 360,
+        "NIO": 31.162733,
+        "NOK": 7.8285,
+        "NPR": 104.23432,
+        "NZD": 1.37645,
+        "OMR": 0.384981,
+        "PAB": 1,
+        "PEN": 3.232482,
+        "PGK": 3.261758,
+        "PHP": 52.044,
+        "PKR": 115.5,
+        "PLN": 3.417343,
+        "PYG": 5561.8,
+        "QAR": 3.640999,
+        "RON": 3.796299,
+        "RSD": 96.23474,
+        "RUB": 57.989,
+        "RWF": 866.275,
+        "SAR": 3.7508,
+        "SBD": 7.806884,
+        "SCR": 13.455,
+        "SDG": 18.160225,
+        "SEK": 8.39015,
+        "SGD": 1.315422,
+        "SHP": 0.70987,
+        "SLL": 7664.007735,
+        "SOS": 578.199728,
+        "SRD": 7.468,
+        "SSP": 130.2634,
+        "STD": 19928.859374,
+        "STN": 20.1,
+        "SVC": 8.748292,
+        "SYP": 514.98999,
+        "SZL": 11.932171,
+        "THB": 31.231,
+        "TJS": 8.824145,
+        "TMT": 3.499986,
+        "TND": 2.431109,
+        "TOP": 2.237882,
+        "TRY": 4.045708,
+        "TTD": 6.7429,
+        "TWD": 29.328,
+        "TZS": 2262.9,
+        "UAH": 26.2729,
+        "UGX": 3692.15,
+        "USD": 1,
+        "UYU": 28.265527,
+        "UZS": 8100.2,
+        "VEF": 40241.5117,
+        "VND": 22795.76534,
+        "VUV": 106.388832,
+        "WST": 2.526438,
+        "XAF": 533.830926,
+        "XAG": 0.06105823,
+        "XAU": 0.00075007,
+        "XCD": 2.70255,
+        "XDR": 0.690534,
+        "XOF": 533.830926,
+        "XPD": 0.00110637,
+        "XPF": 97.114558,
+        "XPT": 0.00109154,
+        "YER": 250.306642,
+        "ZAR": 12.032145,
+        "ZMW": 9.384,
+        "ZWL": 322.355011
+      }
+    };
+
+    fx.base = fxSetup.base;
+    fx.rates = fxSetup.rates;
+
+  /* get input values */
+    var params = request.body.result.parameters;
+    var amount = params['amount'];
+    var payload = {
+      from: params['currencyFrom'],
+      to: params['currencyTo']
+    };
+
+    var converted = fx.convert(amount, payload);
+    var result = payload.to + ' ' + Math.round(converted * 100) / 100;
+
+  /* logs */
+    console.info('Result: ', result);
+
+  /* send response */
+    response.send({
+      speech: result || 'looks like there is something not happened good, please try again!'
+    });
+
+});

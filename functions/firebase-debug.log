@@ -1,0 +1,22 @@
+[debug] [2018-04-13T06:31:19.149Z] ----------------------------------------------------------------------
+[debug] [2018-04-13T06:31:19.164Z] Command:       C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\firebase-tools\bin\firebase deploy
+[debug] [2018-04-13T06:31:19.164Z] CLI Version:   3.17.7
+[debug] [2018-04-13T06:31:19.164Z] Platform:      win32
+[debug] [2018-04-13T06:31:19.164Z] Node Version:  v6.9.2
+[debug] [2018-04-13T06:31:19.164Z] Time:          Fri Apr 13 2018 11:31:19 GMT+0500 (Pakistan Standard Time)
+[debug] [2018-04-13T06:31:19.164Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-04-13T06:31:19.180Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-04-13T06:31:19.180Z] > authorizing via signed-in user
+[debug] [2018-04-13T06:31:19.180Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2018-04-13T06:31:19.180Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ { refresh_token: '1/NnO1LF6G9t-05jPJK8DzBVphW2PTvim4vLPOA-LG4bs',
+  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
+  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
+  grant_type: 'refresh_token',
+  scope: 'email https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
+ Fri Apr 13 2018 11:31:19 GMT+0500 (Pakistan Standard Time)
+[debug] [2018-04-13T06:31:19.663Z] <<< HTTP RESPONSE 200
+[debug] [2018-04-13T06:31:19.725Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/currency-converter-a2dd1  
+  
+ Fri Apr 13 2018 11:31:19 GMT+0500 (Pakistan Standard Time)
